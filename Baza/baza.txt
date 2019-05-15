@@ -1,0 +1,201 @@
+drop database if exists `swiat_gier`;
+Create database swiat_gier;
+use swiat_gier;
+
+create table Autor (
+  id_a Int unsigned not null auto_increment,
+  imie char(20) not null,
+  nazwisko char(30) not null,
+   primary key(id_a))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+
+create table Wydawnictwo (
+  id_w Int unsigned not null auto_increment,
+  wydawca tinytext not null,
+   primary key(id_w))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table IloscGraczy (
+  ile tinyint unsigned not null,
+   primary key(ile))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table Czas (
+  id_c Int unsigned not null auto_increment,
+  min int unsigned not null,
+  max int unsigned,
+   primary key(id_c))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table Rodzaj(
+  id_r Int unsigned not null auto_increment,
+  nazwaR char(30) not null,
+   primary key(id_r))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table Gatunek(
+  id_g Int unsigned not null auto_increment,
+  nazwaG char(30) not null,
+   primary key(id_g))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+
+create table Gra(
+  id Int unsigned not null auto_increment,
+  tytul tinytext not null,
+  rok char(4) not null,
+  zdjecie mediumblob,
+  opis text not null,
+  link tinytext,
+  wiek tinyint,
+  id_c int unsigned not null,
+  id_w  int unsigned not null,
+  primary key(id),
+  foreign key (id_c) references Czas(id_c),
+   foreign key (id_w) references Wydawnictwo(id_w))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+# TODO triger - cokolwiek to jest ;)
+
+create table autor_gra (
+  id_a Int unsigned not null ,
+  id_g Int unsigned not null,
+   foreign key (id_a) references Autor(id_a),
+   foreign key (id_g) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table ile_gra (
+  id_i tinyint unsigned not null ,
+  id_g Int unsigned not null,
+   foreign key (id_i) references IloscGraczy(ile),
+   foreign key (id_g) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table rodzaj_gra (
+  id_r Int unsigned not null ,
+  id_g Int unsigned not null,
+   foreign key (id_r) references Rodzaj(id_r),
+   foreign key (id_g) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+
+create table gatunek_gra (
+  id_g Int unsigned not null ,
+  id_gra Int unsigned not null,
+   foreign key (id_g) references Gatunek(id_g),
+   foreign key (id_gra) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+
+create table User(
+  nickname char(30) not null,
+  haslo text not null,
+  avatar mediumblob,
+  mail char(100) not null,
+  primary key(nickname))
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+#TODO triger avatar
+
+
+create table user_gra_kom (
+  nickname char(30) not null,
+  id_gra Int unsigned not null,
+  data timestamp not null default current_timestamp,
+  tekst text not null,
+   foreign key (nickname) references User(nickname),
+   foreign key (id_gra) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table user_gra_ocena (
+  nickname char(30) not null,
+  id_gra Int unsigned not null,
+  ocena tinyint unsigned not null ,
+   foreign key (nickname) references User(nickname),
+   foreign key (id_gra) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+create table user_gra_like (
+  nickname char(30) not null,
+  id_gra Int unsigned not null,
+   foreign key (nickname) references User(nickname),
+   foreign key (id_gra) references Gra(id)
+)
+ engine = innodb
+default character set utf8 collate utf8_unicode_ci;
+
+
+insert Autor (imie, nazwisko)
+values ("Jacob", "Fryxelius"), ("Alan R.", "Moon");
+
+insert Wydawnictwo (wydawca)
+values ("Rebel"), ("Days of Wonders");
+
+insert IloscGraczy (ile)
+values (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(15),(16),(17),(18);
+
+insert Czas (min , max)
+values (90, 120), (45, null);
+
+insert Rodzaj (nazwaR)
+values ("planszowe"), ("karciane"), ("kościane"), ("figurkowe"), ("RPG");
+
+insert Gatunek (nazwaG)
+values ("familijne"), ("imprezowe"), ("strategiczne"), ("wojenne"), ("przygodowe"), ("logiczne"), ("słowne"), ("edukacyjne"),("dodatki do gier");
+
+insert Gra ( tytul, rok, opis, link, wiek, id_c, id_w)
+values ("Terraformacja Marsa", "2016", "Ludzkość rozpoczęła ekspansję w Układzie Słonecznym. Na Marsie założono już kilka niewielkich kolonii. Ich mieszkańcy są odgrodzeni od naturalnego środowiska straszliwie zimnej, suchej i niemal pozbawionej atmosfery planety.
+
+Zwiększenie odsetka imigracji z Ziemi wymaga terraformacji Marsa, czyli dostosowania jego środowiska, aby ludzie mogli w nim przeżyć bez sprzętu ochronnego i aby zminimalizować śmiertelność w wyniku drobnych wypadków. W związku z tym Rząd Ziemi zdecydował się wesprzeć każdą organizację, która przyczyni się do tego wiekopomnego dzieła.
+
+Hojne dofinansowanie przyciąga gigantyczne korporacje, które pragną zwiększyć swój udział w rynku i stać się najbardziej wpływowymi podmiotami realizującymi projekt terraformacji. Ujarzmienie Czerwonej Planety to dla wielu szansa na oszałamiający sukces.
+
+W Terraformacji Marsa gracz obejmie kontrolę nad jedną z korporacji i jako jej zarząd będzie kupować i zagrywać karty opisujące różne projekty inwestycyjne. Zazwyczaj projekty będą bezpośrednio lub pośrednio przyczyniać się do procesu terraformacji, mogą też jednak być przedsięwzięciami biznesowymi innego rodzaju.
+
+Aby wygrać, gracz musi osiągnąć wysoki Współczynnik Terraformacji (WT) i zdobyć dużo Punktów Zwycięstwa (PZ). WT gracza wzrasta za każdym razem, kiedy podniesie on jeden ze Wskaźników Globalnych (Temperaturę, poziom Tlenu lub liczbę Oceanów). Od WT zależy podstawowy dochód gracza, a także jego podstawowy wynik.
+
+W miarę przebiegu procesu terraformacji gracze będą mogli realizować coraz większą liczbę projektów. Dodatkowe PZ można zdobyć za wszystko, co przyczyni się do zwiększenia panowania ludzkości nad Układem Słonecznym, na przykład za zakładanie miast, budowę infrastruktury lub ochronę środowiska.", "https://www.rebel.pl//product.php/1,303/99856/Terraformacja-Marsa-edycja-Gra-Roku.html", 12, 1, 1 ),
+       ("Wsiąść do pociągu", "2004",
+"2. października 1900 roku. 28 lat wcześniej londyński ekscentryk Phileas Fogg wygrał swój słynny zakład o podróż w 80 dni dookoła świata.
+Teraz, u progu nowego wieku nadszedł czas na nową niewiarygodną podróż. Starzy przyjaciele, którzy zebrali się by uczcić wygraną Fogga podejmują nowe wyzwanie.
+Stawka - 1 milion dolarów - zwycięzca bierze wszystko. Cel: kto może odwiedzić koleją najwięcej miast w Ameryce Północnej, w 7 dni! Przygoda rozpoczyna się już teraz...
+We Wsiąść do Pociągu: USA gracze otrzymują na początku zestaw biletów (zadań), które mają zrealizować - na przykład San Francisco - New Jork czy Los Angeles - Atlanta.
+ W czasie gry budują trasy z wagoników na mapie Stanów Zjednoczonych, przy czym dwie osoby nie mogą przejechać tą samą trasą (chyba że jest tam podwójna linia).
+ Gra wymaga strategii i taktycznego myślenia, które pozwoli jak najkorzystniej zrealizować swoje zadania, zablokować przeciwników i przechwycić najlepsze trasy.
+ Jednocześnie ma bardzo proste zasady, które można wyjaśnić w ciągu kilku minut!
+Wsiąść do Pociągu: USA jest szczególnie polecana osobom, które rozpoczynają swoją przygodę z grami planszowymi, co nie znaczy jednak, że nie stanowi wyzwania
+ także dla wyrafinowanych amatorów tej rozrywki. To gra dla każdego - mogą się w nią bawić już kilkuletnie dzieci jak i dorośli ludzie. Udane połączenie
+  elementów strategii i szczęścia pozwala na wygraną nawet początkującym.", "https://www.rebel.pl//product.php/1,606/26239/Wsiasc-do-Pociagu-USA.html", 8, 2, 2 );
+
+insert autor_gra(id_a, id_g)
+values (1,1), (2,2);
+
+insert ile_gra(id_i, id_g)
+values (1,1), (2,1), (3,1), (5,1), (4,1), (2,2), (3,2), (4,2), (5,2);
+
+insert rodzaj_gra(id_r, id_g)
+VALUES (1,1), (2,1), (1,2);
+
+insert gatunek_gra(id_g, id_gra)
+VALUES (1,2), (3,1), (3,2);
