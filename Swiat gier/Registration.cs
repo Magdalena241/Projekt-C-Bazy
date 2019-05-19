@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Swiat_gier
 {
-    public partial class Login : Form
+    public partial class Registration : Form
     {
-        public Login()
+        public Registration()
         {
             InitializeComponent();
         }
