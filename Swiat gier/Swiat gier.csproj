@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataBases\DBConnection.cs" />
     <Compile Include="DataBases\Query.cs" />
+    <Compile Include="Data\Dane.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\RealModel.cs" />

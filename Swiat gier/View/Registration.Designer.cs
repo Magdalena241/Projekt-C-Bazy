@@ -28,23 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this.NickTextBox = new System.Windows.Forms.TextBox();
+            this.PassTextBox = new System.Windows.Forms.TextBox();
+            this.RegisterButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.EmailError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.NickError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PassError = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.EmailError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NickError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PassError)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(58, 83);
+            this.label1.Location = new System.Drawing.Point(44, 67);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 25);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "E-mail:";
             // 
@@ -52,9 +60,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(58, 120);
+            this.label2.Location = new System.Drawing.Point(44, 98);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 25);
+            this.label2.Size = new System.Drawing.Size(83, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nickname:";
             // 
@@ -62,68 +71,94 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(58, 156);
+            this.label3.Location = new System.Drawing.Point(44, 127);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 25);
+            this.label3.Size = new System.Drawing.Size(82, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Password:";
             // 
-            // textBox1
+            // EmailTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(178, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(251, 22);
-            this.textBox1.TabIndex = 3;
+            this.EmailTextBox.Location = new System.Drawing.Point(134, 67);
+            this.EmailTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmailTextBox.Name = "EmailTextBox";
+            this.EmailTextBox.Size = new System.Drawing.Size(189, 20);
+            this.EmailTextBox.TabIndex = 3;
             // 
-            // textBox2
+            // NickTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(178, 120);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(251, 22);
-            this.textBox2.TabIndex = 4;
+            this.NickTextBox.Location = new System.Drawing.Point(134, 98);
+            this.NickTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NickTextBox.Name = "NickTextBox";
+            this.NickTextBox.Size = new System.Drawing.Size(189, 20);
+            this.NickTextBox.TabIndex = 4;
             // 
-            // textBox3
+            // PassTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(178, 156);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(251, 22);
-            this.textBox3.TabIndex = 5;
+            this.PassTextBox.Location = new System.Drawing.Point(134, 127);
+            this.PassTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PassTextBox.Name = "PassTextBox";
+            this.PassTextBox.PasswordChar = '*';
+            this.PassTextBox.ShortcutsEnabled = false;
+            this.PassTextBox.Size = new System.Drawing.Size(189, 20);
+            this.PassTextBox.TabIndex = 5;
             // 
-            // button1
+            // RegisterButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(229, 209);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 36);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Register";
-            this.button1.UseVisualStyleBackColor = true;
+            this.RegisterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.RegisterButton.Location = new System.Drawing.Point(172, 170);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RegisterButton.Name = "RegisterButton";
+            this.RegisterButton.Size = new System.Drawing.Size(104, 29);
+            this.RegisterButton.TabIndex = 6;
+            this.RegisterButton.Text = "Register";
+            this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(188, 258);
+            this.label4.Location = new System.Drawing.Point(141, 210);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(228, 24);
+            this.label4.Size = new System.Drawing.Size(176, 18);
             this.label4.TabIndex = 7;
             this.label4.Text = "Already have an account?";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // EmailError
+            // 
+            this.EmailError.ContainerControl = this;
+            // 
+            // NickError
+            // 
+            this.NickError.ContainerControl = this;
+            // 
+            // PassError
+            // 
+            this.PassError.ContainerControl = this;
             // 
             // Registration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 525);
+            this.ClientSize = new System.Drawing.Size(391, 427);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.RegisterButton);
+            this.Controls.Add(this.PassTextBox);
+            this.Controls.Add(this.NickTextBox);
+            this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Registration";
             this.Text = "Registration";
+            ((System.ComponentModel.ISupportInitialize)(this.EmailError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NickError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PassError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,10 +169,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox EmailTextBox;
+        private System.Windows.Forms.TextBox NickTextBox;
+        private System.Windows.Forms.TextBox PassTextBox;
+        private System.Windows.Forms.Button RegisterButton;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider EmailError;
+        private System.Windows.Forms.ErrorProvider NickError;
+        private System.Windows.Forms.ErrorProvider PassError;
     }
 }

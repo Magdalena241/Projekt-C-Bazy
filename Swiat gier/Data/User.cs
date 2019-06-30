@@ -6,39 +6,31 @@ using System.Threading.Tasks;
 
 namespace Swiat_gier.Data
 {
-    class User
+    public class User
     {
-        string nickname;
-        string password;
-        string mail;
 
         public User(string nickname, string password, string mail)
         {
-            this.nickname = nickname;
-            this.password = password;
-            this.mail = mail;
+            Nickname = nickname;
+            Password = password;
+            Mail = mail;
+        }
+
+        public User(): this("", "", "")
+        {
         }
 
         public string Nickname
         {
-            get
-            {
-                return nickname;
-            }
+            get; set;
         }
         public string Password
         {
-            get
-            {
-                return password;
-            }
+            get; set;
         }
         public string Mail
         {
-            get
-            {
-                return mail;
-            }
+            get; set;
         }
     }
 }
