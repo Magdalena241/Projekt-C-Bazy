@@ -47,7 +47,7 @@ namespace Swiat_gier.DataBases
                     if (dataReader[0].ToString() == user.Nickname)
                         return false;
                 }
-                
+
                 command.ExecuteNonQuery();
             }
             catch (Exception exception)
@@ -80,7 +80,7 @@ namespace Swiat_gier.DataBases
                     user = new User(nick, pass, email);
                 }
 
-               
+
             }
             catch (Exception exception)
             {
