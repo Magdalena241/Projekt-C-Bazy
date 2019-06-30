@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Swiat_gier.Model
 {
-    class TestModel
+    class TestModel : IModel
     {
     }
 }

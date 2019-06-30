@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Swiat_gier.Model;
+using Swiat_gier.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +16,10 @@ namespace Swiat_gier
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            IModel model = new TestModel();
+            IView view = new View.View();
+            Presenter.Presenter presenter = new Presenter.Presenter(model, view);
+            presenter.RunApp();
         }
     }
 }

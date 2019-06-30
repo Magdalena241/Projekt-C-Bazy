@@ -8,5 +8,6 @@ namespace Swiat_gier.View
 {
     interface IView
     {
+        void Show();
     }
 }
